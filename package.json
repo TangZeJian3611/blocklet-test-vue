@@ -1,0 +1,43 @@
+{
+  "name": "blocklet-test-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "eslint src --ext .mjs,.js,.vue",
+    "start": "npm run serve",
+    "clean": "rm -rf .blocklet",
+    "bundle": "npm run clean && PUBLIC_PATH=/.blocklet/proxy/z8iZxiNt2wFQQZUb7T1kAK5cWr6TTui342Ee5 npm run build && blocklet bundle --zip --create-release",
+    "deploy": "npm run bundle && blocklet deploy .blocklet/bundle",
+    "upload": "npm run bundle && blocklet upload .blocklet/release/blocklet.json",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "core-js": "^3.22.3",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/eslint-parser": "^7.17.0",
+    "@vue/cli-plugin-babel": "~5.0.4",
+    "@vue/cli-plugin-eslint": "~5.0.4",
+    "@vue/cli-service": "~5.0.4",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.7.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "lint-staged": {
+    "*.{mjs,js,vue}": [
+      "prettier --write",
+      "eslint --ext .js,.vue,.mjs"
+    ],
+    "*.{css,less,scss,json,graphql}": [
+      "prettier --write"
+    ]
+  }
+}
